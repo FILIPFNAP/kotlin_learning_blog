@@ -5,13 +5,13 @@ import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth'
 
 // Your Firebase config (from Firebase Console)
  const firebaseConfig = {
-    apiKey: "AIzaSyDw_KBVw-N4EsKrNAbfrIoW3eDHcjlhv1g",
-    authDomain: "fnappl.firebaseapp.com",
-    projectId: "fnappl",
-    storageBucket: "fnappl.firebasestorage.app",
-    messagingSenderId: "504759761470",
-    appId: "1:504759761470:web:ac922a43cc09ec1d1f6f6f",
-    measurementId: "G-82SJ0QLCMQ"
+     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+      authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+      projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+     storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+     messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+     appId: import.meta.env.VITE_FIREBASE_APP_ID,
+      measurementId: import.meta.env.VITE_MEASUREMENT_ID
   };
 
 // Initialize Firebase and Firestore
