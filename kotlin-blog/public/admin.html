@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Post</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/src/css/style.css">
+    <script type="module" src="/src/js/admin.js"></script>
+    <script type="module">
+        import { auth } from './src/js/app.js';
+        import { onAuthStateChanged, signOut } from './node_modules/firebase/auth';
+        
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Handle logout
+        const logoutBtn = document.getElementById('logout-btn');
+        logoutBtn.addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                alert('You have been logged out.');
+                window.location.href = 'login.html';
+            } catch (error) {
+                console.error('Error during logout:', error);
+                alert('Failed to log out. Please try again.');
+            }
+        });
+    </script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center p-6">
+    <div class="w-full max-w-4xl">
+
+        <!-- Logout Button -->
+        <button
+            id="logout-btn"
+            class="absolute top-6 right-6 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition-colors"
+        >
+            Logout
+        </button>
+        <h1 class="text-4xl font-extrabold text-center text-blue-400 mb-8">Add a New Blog Post</h1>
+        <form id="post-form" class="bg-gray-800 p-6 shadow-lg rounded-lg border border-gray-700 space-y-4">
+            <div>
+                <label for="title" class="block text-blue-300 font-medium">Title:</label>
+                <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    style="background-color: #e5e7eb; color: #000;"
+                    class="w-full p-2 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                />
+            </div>
+            <div>
+                <label for="content" class="block text-blue-300 font-medium">Content:</label>
+                <textarea
+                    name="content"
+                    id="content"
+                    rows="10"
+                    style="background-color: #e5e7eb; color: #000;"
+                    class="w-full p-2 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                ></textarea>
+            </div>
+            <div>
+                <label for="created-at" class="block text-blue-300 font-medium">Created At:</label>
+                <input
+                    type="datetime-local"
+                    id="created-at"
+                    style="background-color: #e5e7eb; color: #000;"
+                    class="w-full p-2 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                />
+            </div>
+            <button
+                type="submit"
+                class="w-full bg-blue-500 text-white font-medium py-2 rounded-md hover:bg-blue-600 transition-colors"
+            >
+                Add Post
+            </button>
+        </form>
+        <a href="index.html" class="block mt-6 text-blue-400 hover:underline text-center">
+            Back to Home
+        </a>
+        
+    </div>
+</body>
+</html>
+ 
