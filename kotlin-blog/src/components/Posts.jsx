@@ -3,6 +3,7 @@ import { db, auth } from '../js/app'; // Import auth from your app.js
 import { collection, getDocs } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
@@ -61,13 +62,13 @@ const Posts = () => {
                             key={post.id}
                             className="bg-gray-800 p-6 shadow-lg rounded-lg border border-gray-700 mx-auto w-full sm:w-3/4 md:w-2/3 hover:shadow-xl transition-shadow"
                         >
-                            <a
-                                href={`post.html?id=${post.id}`}
+                            <Link
+                                to={`/post/${post.id}`} // Use `to` for React Router navigation
                                 className="text-blue-300 font-medium hover:underline hover:text-blue-500 block text-center"
                             >
                                 {post.title}
-                            </a>
-                        </li>
+                            </Link>
+                        </li>   
                     ))}
                 </ul>
             </div>
