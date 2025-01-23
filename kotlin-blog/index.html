@@ -23,40 +23,6 @@
     >
         +
     </a>
-
-    <!-- Authentication Script -->
-    <script type="module">
-      import { auth } from './src/js/app.js';
-      import { onAuthStateChanged } from 'firebase/auth';
-  
-      const addPostBtn = document.getElementById('add-post-btn');
-      let isAuthenticated = false;
-  
-      // Listen for authentication state changes
-      onAuthStateChanged(auth, (user) => {
-          if (user) {
-              // User is signed in
-              isAuthenticated = true;
-              console.log('User is signed in:', user);
-          } else {
-              // No user is signed in
-              isAuthenticated = false;
-              console.log('User not signed in');
-          }
-      });
-  
-      addPostBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-  
-          if (isAuthenticated) {
-              // User is authenticated, redirect to admin.html
-              window.location.href = 'admin.html';
-          } else {
-              // Redirect to login.html
-              window.location.href = 'login.html';
-          }
-      });
-  </script>
     
   </body>
 </html>
